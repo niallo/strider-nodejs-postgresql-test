@@ -7,6 +7,7 @@ describe("PostgreSQL", function() {
     var uri = process.env.POSTGRESQL_URI;
     pg.connect(uri, function(err, client) {
       client.query("SELECT NOW() as when", function(err, result) {
+        console.log("Row: %j", result.rows[0]);
         var year = result.rows[0].when.getYear();
         var d = new Date();
         year.should.eql(d.getFullYear());
